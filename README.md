@@ -9,6 +9,10 @@ Dictado por voz para Mac: doble-tap en la tecla <kbd>⌘ derecha</kbd>, habla, y
 
 ---
 
+## Web y descarga
+
+**[🌐 Landing](https://tactician200.github.io/kimvo-voice/)**
+
 ## Descargar
 
 **[⬇ Última versión (.dmg)](../../releases/latest)** · macOS · Apple Silicon (M1 o superior)
