@@ -1,0 +1,659 @@
+/* Direction 3 — Studio / Industrial instrument
+ * Anchors: Tonal + Linear (rigor) + Vercel (Geist)
+ * Personality: instrumento de precisión. Yellow signal accent.
+ */
+
+:root {
+  --bg: #0d0d10;
+  --surface: #131316;
+  --surface-2: #18181c;
+  --ink: #fafafa;
+  --ink-dim: #a8a8ad;
+  --ink-mute: #65656a;
+  --border: #232328;
+  --border-strong: #38383e;
+  --accent: #ffd400;
+  --accent-dim: #cca800;
+  --accent-fg: #1a1500;
+  --accent-soft: rgba(255, 212, 0, 0.08);
+
+  /* Platform LED colors per product (from shared/design_tokens.py) */
+  --led-voice: #8B6BFF;   /* Kimvo Voice — violeta */
+  --led-meet:  #4D9DFF;   /* Kimvo Meet  — azul commit */
+  --led-drop:  #34E27A;   /* Kimvo Drop  — verde agree */
+
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --radius-btn: 2px;
+  --radius-card: 4px;
+  --radius-pill: 4px;
+
+  --section-y: 112px;
+}
+
+/* Industrial type — sharp, geometric */
+h1, h2, h3 { letter-spacing: -0.025em; }
+
+/* Industrial buttons — sharp corners, thicker borders */
+.btn { border-radius: var(--radius-btn); font-weight: 500; text-transform: none; }
+.btn-primary {
+  background: var(--accent); color: var(--accent-fg);
+  border: 1px solid var(--accent); font-weight: 600;
+}
+.btn-primary:hover { background: var(--accent-dim); border-color: var(--accent-dim); }
+.btn-secondary { border: 1px solid var(--border-strong); color: var(--ink); }
+.btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Industrial nav with status bar */
+nav.top { border-bottom: 1px solid var(--border-strong); }
+nav.top .brand {
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+nav.top .brand .ver {
+  margin-left: 8px; color: var(--ink-mute); font-size: 0.72rem;
+}
+
+/* Status bar — like a hardware device top strip */
+.status-bar {
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border-strong);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  padding: 8px 0;
+  color: var(--ink-mute);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+.status-bar .container { display: flex; justify-content: space-between; align-items: center; }
+.status-bar .live-dot { background: var(--accent); margin-right: 8px; }
+.status-bar .seg { display: flex; align-items: center; gap: 8px; }
+
+/* Hero — asymmetric 60/40 split */
+.hero-instrument {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 64px;
+  padding: 80px 0 96px;
+  align-items: center;
+}
+@media (max-width: 900px) { .hero-instrument { grid-template-columns: 1fr; gap: 40px; } }
+
+.hero-instrument h1 {
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.0;
+}
+
+/* Instrument panel mock */
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-card);
+  padding: 0;
+  overflow: hidden;
+}
+.panel-header {
+  padding: 12px 16px;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border-strong);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-mute);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.panel-header .led-row { display: flex; gap: 6px; }
+.panel-header .led { width: 6px; height: 6px; border-radius: 50%; background: var(--border-strong); }
+.panel-header .led.on { background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+
+.panel-body { padding: 24px; }
+
+/* Waveform display */
+.osc-display {
+  background: var(--bg);
+  border: 1px solid var(--border-strong);
+  border-radius: 2px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+.osc-bars {
+  display: flex; align-items: center; gap: 3px; height: 64px;
+}
+.osc-bars span {
+  display: block; width: 4px; background: var(--accent); border-radius: 0;
+}
+.osc-readout {
+  margin-top: 12px;
+  display: flex; justify-content: space-between;
+  font-family: var(--font-mono); font-size: 0.74rem;
+  color: var(--ink-mute);
+  text-transform: uppercase; letter-spacing: 0.1em;
+}
+.osc-readout strong { color: var(--accent); font-weight: 600; }
+
+/* Mode selectors — toggle buttons */
+.mode-row {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px;
+  margin-top: 16px;
+}
+.mode-toggle {
+  padding: 10px 6px;
+  background: var(--bg);
+  border: 1px solid var(--border-strong);
+  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-mute);
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mode-toggle.active {
+  background: var(--accent);
+  color: var(--accent-fg);
+  border-color: var(--accent);
+  font-weight: 600;
+}
+
+/* Vias grid — 2 atajos panel layout */
+.vias-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 48px;
+}
+@media (max-width: 800px) { .vias-grid { grid-template-columns: 1fr; } }
+.via-list {
+  list-style: none;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--border-strong);
+  font-family: var(--font-mono);
+  font-size: 0.84rem;
+  color: var(--ink-dim);
+}
+.via-list li { padding: 4px 0; }
+.via-list li strong { color: var(--accent); font-weight: 600; }
+
+/* Catálogos grid — 3 columnas */
+.catalogs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 40px;
+}
+@media (max-width: 900px) { .catalogs-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .catalogs-grid { grid-template-columns: 1fr; } }
+
+/* Modes grid: industrial panels */
+.modes-grid { gap: 8px; }
+.mode-card {
+  border-radius: var(--radius-card);
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  padding: 0;
+}
+.mode-card .mode-key {
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border-strong);
+  padding: 10px 16px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-mute);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.mode-card .mode-key .num { color: var(--accent); font-weight: 600; }
+.mode-card .mode-body { padding: 18px 20px 22px; }
+.mode-card h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; }
+
+/* Wedge demo — instrument readout */
+.wedge-panel {
+  margin-top: 56px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+  overflow: hidden;
+}
+.wedge-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+@media (max-width: 800px) { .wedge-split { grid-template-columns: 1fr; } }
+.wedge-side {
+  padding: 28px;
+  border-right: 1px solid var(--border-strong);
+}
+.wedge-side:last-child { border-right: 0; }
+@media (max-width: 800px) {
+  .wedge-side { border-right: 0; border-bottom: 1px solid var(--border-strong); }
+  .wedge-side:last-child { border-bottom: 0; }
+}
+.wedge-side .channel-label {
+  display: inline-block;
+  padding: 4px 10px;
+  background: var(--surface-2);
+  border: 1px solid var(--border-strong);
+  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-mute);
+  margin-bottom: 16px;
+}
+.wedge-side .channel-label.in { color: var(--accent); border-color: var(--accent-dim); }
+.wedge-side .content {
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+  line-height: 1.7;
+  color: var(--ink-dim);
+}
+.wedge-side .content .h { color: var(--accent); font-weight: 600; }
+
+/* Privacy: instrument switch */
+.privacy-board {
+  margin-top: 48px;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-card);
+  padding: 32px;
+}
+.privacy-channels {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+  margin-top: 24px;
+}
+@media (max-width: 700px) { .privacy-channels { grid-template-columns: 1fr; } }
+.priv-ch {
+  padding: 20px;
+  border: 1px solid var(--border-strong);
+  border-radius: 2px;
+  background: var(--bg);
+}
+.priv-ch.on { border-color: var(--accent); background: var(--accent-soft); }
+.priv-ch .ch-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-strong);
+}
+.priv-ch .ch-name {
+  font-family: var(--font-mono); font-size: 0.74rem;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--ink-mute);
+}
+.priv-ch.on .ch-name { color: var(--accent); }
+.priv-ch .ch-state {
+  font-family: var(--font-mono); font-size: 0.7rem;
+  padding: 3px 8px; border-radius: 2px;
+  background: var(--border); color: var(--ink-mute);
+}
+.priv-ch.on .ch-state { background: var(--accent); color: var(--accent-fg); }
+.priv-ch ul { list-style: none; font-family: var(--font-mono); font-size: 0.84rem; }
+.priv-ch li { padding: 3px 0; color: var(--ink-dim); }
+.priv-ch li::before { content: '› '; color: var(--ink-mute); }
+.priv-ch.on li::before { color: var(--accent); }
+
+/* Comparison: hardware spec sheet */
+.compare-table th {
+  background: var(--surface-2);
+  border-bottom: 2px solid var(--accent);
+}
+.compare-table th, .compare-table td {
+  border-bottom: 1px solid var(--border-strong);
+  padding: 14px 16px;
+}
+.compare-table td.us {
+  color: var(--accent); font-weight: 600;
+  background: var(--accent-soft);
+}
+
+/* B2B: hardware order form feel */
+.b2b-spec {
+  margin-top: 32px;
+  padding: 48px;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-card);
+}
+.b2b-spec h2 { font-family: var(--font-display); font-weight: 700; }
+.b2b-spec ul { list-style: none; margin: 24px 0; }
+.b2b-spec li {
+  padding: 14px 0;
+  border-top: 1px dashed var(--border-strong);
+  font-family: var(--font-mono);
+  font-size: 0.92rem;
+  color: var(--ink-dim);
+  display: flex; gap: 16px;
+}
+.b2b-spec li:last-child { border-bottom: 1px dashed var(--border-strong); }
+.b2b-spec li .spec-num { color: var(--accent); font-weight: 600; min-width: 32px; }
+
+/* Footer hardware feel */
+footer { border-top: 1px solid var(--accent-dim); padding: 32px 0 48px; }
+footer .container { font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; }
+
+/* ─── PLATFORM · Kimvo v5 ─── */
+
+/* Channel strips en el instrument panel del hero */
+.channel-strip {
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  background: var(--bg);
+  border: 1px solid var(--border-strong);
+  border-left: 3px solid var(--border-strong);
+  border-radius: 2px;
+}
+.channel-strip:last-child { margin-bottom: 0; }
+.strip-label {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--ink);
+  letter-spacing: 0.06em;
+}
+.strip-label strong { font-weight: 600; }
+.strip-hotkey {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  color: var(--ink-mute);
+}
+.strip-desc {
+  margin-top: 6px;
+  font-size: 0.78rem;
+  color: var(--ink-dim);
+  line-height: 1.4;
+}
+
+/* LOS 3 PRODUCTOS — grid */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 48px;
+}
+@media (max-width: 900px) { .products-grid { grid-template-columns: 1fr; } }
+
+.product-card {
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-top: 3px solid var(--led, var(--accent));
+  border-radius: var(--radius-card);
+  display: flex; flex-direction: column;
+  overflow: hidden;
+}
+.product-header {
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-2);
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.product-badge { display: flex; align-items: center; gap: 8px; color: var(--ink); }
+.product-led {
+  display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--led, var(--accent));
+  box-shadow: 0 0 8px var(--led, var(--accent));
+}
+.product-status {
+  color: var(--ink-mute); font-size: 0.68rem;
+}
+.product-body {
+  padding: 22px 20px 24px;
+  flex: 1;
+  display: flex; flex-direction: column;
+}
+.product-body h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  margin-bottom: 12px;
+  color: var(--ink);
+}
+.product-body > p {
+  color: var(--ink-dim);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  margin-bottom: 16px;
+}
+.product-body code {
+  background: var(--surface-2);
+  padding: 1px 6px;
+  border-radius: 2px;
+  font-size: 0.85em;
+  color: var(--led, var(--accent));
+}
+.product-list {
+  list-style: none;
+  margin: 0 0 20px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--border-strong);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--ink-dim);
+}
+.product-list li { padding: 3px 0; }
+.product-list li::before { content: '› '; color: var(--led, var(--accent)); }
+.product-list li strong { color: var(--led, var(--accent)); font-weight: 600; }
+.product-cta {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-mute);
+}
+.product-hotkey {
+  color: var(--led, var(--accent));
+  font-weight: 600;
+}
+
+/* MOTOR COMPARTIDO — grid */
+.engine-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 40px;
+}
+@media (max-width: 900px) { .engine-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .engine-grid { grid-template-columns: 1fr; } }
+.engine-card {
+  padding: 20px 22px 22px;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-card);
+}
+.engine-key {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+}
+.engine-card h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 8px;
+  color: var(--ink);
+}
+.engine-card p {
+  font-size: 0.88rem;
+  color: var(--ink-dim);
+  line-height: 1.5;
+}
+.engine-card code {
+  background: var(--surface-2);
+  padding: 1px 6px;
+  border-radius: 2px;
+  font-size: 0.86em;
+  color: var(--accent);
+}
+
+/* PRICING */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 48px;
+}
+.pricing-grid--4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+@media (max-width: 1100px) { .pricing-grid--4 { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 900px) { .pricing-grid { grid-template-columns: 1fr; } }
+@media (max-width: 600px) { .pricing-grid--4 { grid-template-columns: 1fr; } }
+
+.pricing-card {
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-card);
+  padding: 0;
+  display: flex; flex-direction: column;
+}
+.pricing-card--featured {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  box-shadow: 0 0 0 1px var(--accent);
+  transform: scale(1.02);
+}
+@media (max-width: 900px) { .pricing-card--featured { transform: none; } }
+
+.pricing-header {
+  padding: 24px 24px 20px;
+  border-bottom: 1px solid var(--border);
+}
+.pricing-tier {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink);
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.pricing-amount {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.pricing-per {
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+  color: var(--ink-mute);
+  font-weight: 500;
+  margin-left: 4px;
+}
+.pricing-sub {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--ink-mute);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.pricing-list {
+  list-style: none;
+  margin: 0;
+  padding: 20px 24px;
+  flex: 1;
+  font-size: 0.9rem;
+  color: var(--ink-dim);
+  line-height: 1.7;
+}
+.pricing-list li {
+  padding: 4px 0;
+  padding-left: 20px;
+  position: relative;
+}
+.pricing-list li::before {
+  content: '›';
+  position: absolute;
+  left: 4px;
+  color: var(--accent);
+  font-family: var(--font-mono);
+}
+.pricing-list li strong { color: var(--ink); font-weight: 600; }
+.pricing-list code {
+  background: var(--surface-2);
+  padding: 1px 5px;
+  border-radius: 2px;
+  font-size: 0.86em;
+}
+
+.pricing-cta {
+  margin: 0 24px 24px;
+  text-align: center;
+  justify-content: center;
+}
+
+/* PRIVACY MATRIX */
+.privacy-matrix { margin-top: 40px; }
+.privacy-matrix table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+.privacy-matrix th {
+  padding: 14px 16px;
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-mute);
+  background: var(--surface-2);
+  border-bottom: 2px solid var(--accent);
+  font-weight: 500;
+}
+.privacy-matrix td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+.privacy-matrix tr:last-child td { border-bottom: 0; }
+.privacy-matrix td.prod-row {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  font-weight: 600;
+}
+.privacy-matrix td.ok { color: var(--led-drop); font-family: var(--font-mono); font-size: 0.82rem; }
+.privacy-matrix td.pending { color: var(--accent); font-family: var(--font-mono); font-size: 0.82rem; }
+.privacy-matrix td.na { color: var(--ink-mute); font-family: var(--font-mono); font-size: 0.82rem; font-style: italic; }
+.privacy-matrix td code {
+  background: var(--surface-2);
+  padding: 1px 5px;
+  border-radius: 2px;
+  font-size: 0.9em;
+}

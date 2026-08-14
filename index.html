@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kimvo — Habla. Que se escriba solo.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="_base.css">
+<link rel="stylesheet" href="d3.css">
+</head>
+<body>
+
+<!-- Hardware status bar -->
+<div class="status-bar">
+  <div class="container">
+    <div class="seg"><span class="live-dot"></span> KIMVO BETA · <span style="color: var(--led-voice);">● VOICE</span> DISPONIBLE · <span style="color: var(--led-meet);">● MEET</span> Y <span style="color: var(--led-drop);">● DROP</span> EN DESARROLLO</div>
+    <div class="seg">BETA PRIVADA · GRATIS · MACOS · APPLE SILICON</div>
+  </div>
+</div>
+
+<nav class="top">
+  <div class="container">
+    <div class="brand">Kimvo<span class="ver">/ platform</span></div>
+    <div class="links">
+      <a href="#products">Productos</a>
+      <a href="#wedge">Optimize</a>
+      <a href="#modes">Modos</a>
+      <a href="#engine">Motor</a>
+      <a href="#privacy">Privacidad</a>
+      <a href="#pricing">Beta</a>
+      <a href="#download">Descargar</a>
+      <a href="https://github.com/tactician200/kimvo-voice">Repo ↗</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding: 64px 0 64px;">
+  <div class="container">
+    <div class="hero-instrument">
+      <div>
+        <div class="eyebrow">PLATAFORMA DE VOZ · MAC</div>
+        <h1>Habla. Que se escriba solo.</h1>
+        <p class="lead" style="max-width: 54ch;">El prompt largo, dictado mientras piensas. La reunión, con la nota lista al cerrar. El audio ajeno, en 30 segundos de lectura. Kimvo hace la parte cansadora — lo único que queda por hacer es lo que ibas a decir.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#download">DESCARGAR LA BETA →</a>
+          <a class="btn btn-secondary" href="https://github.com/tactician200/kimvo-voice">VER EN GITHUB</a>
+        </div>
+        <div class="proof" style="margin-top: 32px;">
+          <table style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--ink-mute); border-collapse: collapse;">
+            <tr><td style="padding: 4px 16px 4px 0; text-transform: uppercase; letter-spacing: 0.1em;"><span style="color: var(--led-voice);">●</span> Voice</td><td style="color: var(--ink-dim);"><span style="color: var(--led-drop);">disponible hoy</span> · beta gratuita</td></tr>
+            <tr><td style="padding: 4px 16px 4px 0; text-transform: uppercase; letter-spacing: 0.1em;"><span style="color: var(--led-meet);">●</span> Meet</td><td style="color: var(--ink-dim);">en desarrollo</td></tr>
+            <tr><td style="padding: 4px 16px 4px 0; text-transform: uppercase; letter-spacing: 0.1em;"><span style="color: var(--led-drop);">●</span> Drop</td><td style="color: var(--ink-dim);">en desarrollo</td></tr>
+            <tr><td style="padding: 4px 16px 4px 0; text-transform: uppercase; letter-spacing: 0.1em;">Regla</td><td style="color: var(--ink-dim);">Durante la beta, todo es gratis</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Instrument panel — 3 productos como canales -->
+      <div class="panel">
+        <div class="panel-header">
+          <span>KIMVO · 1 CANAL ACTIVO · 2 EN CAMINO</span>
+          <div class="led-row">
+            <span class="led on" style="background: var(--led-voice); box-shadow: 0 0 8px var(--led-voice);" title="Voice"></span>
+            <span class="led" style="background: var(--led-meet); opacity: 0.35;" title="Meet (en desarrollo)"></span>
+            <span class="led" style="background: var(--led-drop); opacity: 0.35;" title="Drop (en desarrollo)"></span>
+          </div>
+        </div>
+        <div class="panel-body">
+
+          <!-- Canal Voice -->
+          <div class="channel-strip" style="border-left-color: var(--led-voice);">
+            <div class="strip-label">
+              <span style="color: var(--led-voice);">●</span>
+              <strong>KIMVO VOICE</strong>
+              <span class="strip-hotkey">⌘⌘</span>
+            </div>
+            <div class="strip-desc">Piensas en voz alta, aparece el prompt en el cursor</div>
+          </div>
+
+          <!-- Canal Meet -->
+          <div class="channel-strip" style="border-left-color: var(--led-meet);">
+            <div class="strip-label">
+              <span style="color: var(--led-meet);">●</span>
+              <strong>KIMVO MEET</strong>
+              <span class="strip-hotkey">CLI · app</span>
+            </div>
+            <div class="strip-desc">Cierras el zoom, ya tienes acuerdos y pendientes escritos · en desarrollo</div>
+          </div>
+
+          <!-- Canal Drop -->
+          <div class="channel-strip" style="border-left-color: var(--led-drop);">
+            <div class="strip-label">
+              <span style="color: var(--led-drop);">●</span>
+              <strong>KIMVO DROP</strong>
+              <span class="strip-hotkey">drag-drop</span>
+            </div>
+            <div class="strip-desc">Ese audio de 8 minutos, en un párrafo leíble · en desarrollo</div>
+          </div>
+
+          <div style="margin-top: 20px; padding-top: 16px; border-top: 1px dashed var(--border-strong); font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-mute); text-transform: uppercase; letter-spacing: 0.1em;">
+            Motor común · Whisper Large v3 · Groq · whisper.cpp local
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOS 3 PRODUCTOS -->
+<section id="products">
+  <div class="container">
+    <div style="max-width: 720px;">
+      <div class="eyebrow">LOS 3 PRODUCTOS · KIMVO PLATFORM</div>
+      <h2>Los tres momentos donde hablar es más rápido que escribir.</h2>
+      <p class="lead">Cuando escribes un prompt largo. Cuando entras a una reunión sabiendo que vas a olvidar la mitad. Cuando alguien te manda un audio que no querías escuchar. Kimvo hace la parte cansadora en los tres.</p>
+    </div>
+
+    <div class="products-grid">
+
+      <!-- KIMVO VOICE -->
+      <div class="product-card" style="--led: var(--led-voice);">
+        <div class="product-header">
+          <div class="product-badge">
+            <span class="product-led"></span>
+            <strong>KIMVO VOICE</strong>
+          </div>
+          <div class="product-status"><span style="color: var(--led-voice);">● EN LA BETA HOY</span></div>
+        </div>
+        <div class="product-body">
+          <h3>El prompt largo, hablado.</h3>
+          <p>Doble-tap ⌘ derecho: piensas en español mientras hablas, aparece en el cursor en el idioma del contexto — estructurado si es prompt para IA, limpio si es email. Sin editar. Sin recortar tu pensamiento a lo que tus dedos alcanzan.</p>
+          <ul class="product-list">
+            <li><span style="color: var(--led-voice);">HOY</span> · Dictado bilingüe sub-1s (Whisper Large v3 vía Groq)</li>
+            <li><span style="color: var(--led-voice);">HOY</span> · Modos organize / optimize / summarize / explain</li>
+            <li><span style="color: var(--ink-mute);">PRONTO</span> · Modo 100% local con whisper.cpp</li>
+          </ul>
+          <div class="product-cta">Trigger · <span class="product-hotkey">⌘⌘</span> / <span class="product-hotkey">⌥ + ⌘⌘</span></div>
+        </div>
+      </div>
+
+      <!-- KIMVO MEET -->
+      <div class="product-card" style="--led: var(--led-meet);">
+        <div class="product-header">
+          <div class="product-badge">
+            <span class="product-led"></span>
+            <strong>KIMVO MEET</strong>
+          </div>
+          <div class="product-status"><span style="color: var(--ink-mute);">EN DESARROLLO</span></div>
+        </div>
+        <div class="product-body">
+          <h3>Terminas la reunión con la nota lista.</h3>
+          <p>Un panel al costado captura lo que se dice y separa acuerdos, pendientes y decisiones a medida que ocurren. Cierras el zoom y ya tienes la nota — no queda ese trabajo de 20 minutos escuchando el audio otra vez para escribir lo que se dijo.</p>
+          <ul class="product-list">
+            <li><span style="color: var(--ink-mute);">PRONTO</span> · Transcripción local con mlx-whisper</li>
+            <li><span style="color: var(--ink-mute);">PRONTO</span> · Insights en vivo (acuerdos/pendientes/decisiones)</li>
+            <li><span style="color: var(--ink-mute);">PRONTO</span> · Resumen ejecutivo + sync Obsidian/Notion</li>
+          </ul>
+          <div class="product-cta">Trigger · <span class="product-hotkey">Kimvo Meet.app</span></div>
+        </div>
+      </div>
+
+      <!-- KIMVO DROP -->
+      <div class="product-card" style="--led: var(--led-drop);">
+        <div class="product-header">
+          <div class="product-badge">
+            <span class="product-led"></span>
+            <strong>KIMVO DROP</strong>
+          </div>
+          <div class="product-status"><span style="color: var(--ink-mute);">EN DESARROLLO</span></div>
+        </div>
+        <div class="product-body">
+          <h3>El audio de 8 minutos, en 30 segundos de lectura.</h3>
+          <p>El WhatsApp del cliente a las 11 de la noche. La reunión que grabaron sin ti. El mensaje de voz que se te acumuló. Arrastras al Dock, aparece transcrito con lo importante marcado. Ya no tienes que escucharlo entero para saber si te llama.</p>
+          <ul class="product-list">
+            <li><span style="color: var(--ink-mute);">PRONTO</span> · Transcripción local batch con whisper.cpp</li>
+            <li><span style="color: var(--ink-mute);">PRONTO</span> · Análisis post-transcripción (acuerdos + resumen)</li>
+            <li><span style="color: var(--ink-mute);">PRONTO</span> · Batch inteligente por carpeta + sync</li>
+          </ul>
+          <div class="product-cta">Trigger · <span class="product-hotkey">drag → Dock</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <p style="margin-top: 32px; font-family: var(--font-mono); font-size: 0.82rem; color: var(--ink-mute); text-transform: uppercase; letter-spacing: 0.1em; text-align: center;">[ INSTALAS UNA VEZ · KIMVO SE ADAPTA A TUS TRES MOMENTOS ]</p>
+  </div>
+</section>
+
+<!-- WEDGE -->
+<section id="wedge">
+  <div class="container">
+    <div style="max-width: 720px;">
+      <div class="eyebrow"><span style="color: var(--led-voice);">●</span> KIMVO VOICE · MODO 03 OPTIMIZE</div>
+      <h2>Lo que dices y lo que Claude lee, no son lo mismo.</h2>
+      <p class="lead">Tú hablas con titubeos, el archivo mencionado a medias, el detalle al final. Claude responde mejor cuando recibe Context, Task, Details y Constraints separados. Esa traducción la haces tú, a mano, cada prompt.</p>
+      <p style="font-size: 1.1rem; color: var(--ink); max-width: 60ch; margin-top: 16px;">Kimvo Voice la hace en sub-1 segundo. No resume. <strong style="color: var(--accent);">Reordena.</strong></p>
+    </div>
+
+    <div class="wedge-panel">
+      <div class="panel-header">
+        <span>VOZ → PROMPT</span>
+        <span>OPTIMIZE · ES → EN · 0.81s</span>
+      </div>
+      <div class="wedge-split">
+        <div class="wedge-side">
+          <span class="channel-label in">LO QUE DICES · ES</span>
+          <div class="content" style="font-style: italic;">
+            "Hola, tengo un bug raro en la autenticación... en auth.ts, cuando refresca el token me da 401, pero solo si recargo la página, no si navego normal. No quiero tocar cómo guardo los tokens, solo entender qué pasa."
+          </div>
+        </div>
+        <div class="wedge-side">
+          <span class="channel-label">LO QUE CLAUDE LEE · EN</span>
+          <div class="content">
+<span class="h">## Context</span>
+Authentication flow on auth.ts.
+
+<span class="h">## Task</span>
+Debug why the refresh token call returns 401.
+
+<span class="h">## Details</span>
+- File: auth.ts
+- Symptom: 401 on token refresh
+- Trigger: page reload
+
+<span class="h">## Constraints</span>
+Preserve existing token storage logic.
+          </div>
+        </div>
+      </div>
+    </div>
+    <p style="margin-top: 24px; color: var(--ink-mute); font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em;">[ UN ATAJO · MISMO AUDIO · LISTO PARA CLAUDE CODE / CURSOR / CHATGPT ]</p>
+  </div>
+</section>
+
+<!-- 5 MODES -->
+<section id="modes">
+  <div class="container">
+    <div style="max-width: 720px;">
+      <div class="eyebrow"><span style="color: var(--led-voice);">●</span> KIMVO VOICE · DOS ATAJOS</div>
+      <h2>Dos velocidades para dos momentos.</h2>
+      <p class="lead">Cuando quieres que salga rápido — pegar en Slack, escribir un comment, contestar un DM — dictas y ya está. Cuando quieres que salga estructurado — un prompt largo, un email a cliente, una nota razonada — dictas y el sistema decide en qué formato.</p>
+    </div>
+
+    <div class="vias-grid">
+
+      <!-- VÍA 1 — DICTADO PRECISO -->
+      <div class="panel">
+        <div class="panel-header">
+          <span>ATAJO 01 · DICTADO PRECISO</span>
+          <span style="font-family: var(--font-mono); color: var(--ink); font-weight: 600;">⌘⌘</span>
+        </div>
+        <div class="panel-body">
+          <h3 style="font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; margin-bottom: 14px;">Hablas, aparece.</h3>
+          <p style="color: var(--ink-dim); font-size: 0.95rem; line-height: 1.6;">
+            Doble-tap ⌘ derecho. Inglés y español con el mismo motor Whisper Large v3. Sale limpio — el sistema quita muletillas automáticamente. Funciona donde esté tu cursor: Slack, mail, doc, editor de código.
+          </p>
+          <ul class="via-list">
+            <li>› Bilingüe ES + EN · mismo motor</li>
+            <li>› Auto-clean del dictado</li>
+            <li>› Cualquier app de macOS</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- VÍA 2 — DICTADO INTELIGENTE -->
+      <div class="panel" style="border-color: var(--accent);">
+        <div class="panel-header" style="background: var(--accent); color: var(--accent-fg); border-bottom-color: var(--accent);">
+          <span>ATAJO 02 · DICTADO INTELIGENTE</span>
+          <span style="font-family: var(--font-mono); font-weight: 600;">⌥ + ⌘⌘</span>
+        </div>
+        <div class="panel-body">
+          <h3 style="font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; margin-bottom: 14px;">Hablas, el sistema interpreta para qué.</h3>
+          <p style="color: var(--ink-dim); font-size: 0.95rem; line-height: 1.6;">
+            Opt + doble-tap ⌘ derecho. El sistema lee tu intención y entra al modo que aplica — prompt para IA, redacción, resumen o explicación.
+          </p>
+          <ul class="via-list">
+            <li>› <strong>Optimize</strong> — prompt 4-secciones para IA</li>
+            <li>› <strong>Escritura</strong> — email, post o mensaje según estilo</li>
+            <li>› <strong>Resumir</strong> — tres frases del portapapeles</li>
+            <li>› <strong>Explicar</strong> — con contexto, en voz o pegado</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MOTOR COMPARTIDO -->
+<section id="engine">
+  <div class="container">
+    <div style="max-width: 720px;">
+      <div class="eyebrow">MOTOR COMPARTIDO · KIMVO CORE</div>
+      <h2>Configuras una vez. Kimvo hace lo mismo en los tres.</h2>
+      <p class="lead">Tu vocabulario médico, tu tono al escribir, los datos que no quieres que salgan, tu llave de Groq: los pones una vez y viven en Voice, Meet y Drop. Sin re-aprender la app, sin duplicar catálogos, sin decidir tres veces si eres de nube o de local.</p>
+    </div>
+
+    <div class="engine-grid">
+      <div class="engine-card">
+        <div class="engine-key">01</div>
+        <h4>Transcripción</h4>
+        <p>Whisper Large v3 · Groq cloud + whisper.cpp local. Los 3 productos consumen la misma función.</p>
+      </div>
+      <div class="engine-card">
+        <div class="engine-key">02</div>
+        <h4>Catálogos de prompts</h4>
+        <p>Un catálogo médico o legal aplica al dictado, a las reuniones y a los archivos. Definís una vez.</p>
+      </div>
+      <div class="engine-card">
+        <div class="engine-key">03</div>
+        <h4>Privacy switch</h4>
+        <p>Env var <code>AUTO_WHISPER_PRIVACY_MODE=1</code>. Voice + Meet respetan; Drop hoy es cloud only.</p>
+      </div>
+      <div class="engine-card">
+        <div class="engine-key">04</div>
+        <h4>Output</h4>
+        <p>Meet + Drop escriben en <code>~/MeetingTranscripts/notes/</code>. Un solo Obsidian vault, un solo grep.</p>
+      </div>
+      <div class="engine-card">
+        <div class="engine-key">05</div>
+        <h4>API key</h4>
+        <p>Una sola <code>GROQ_API_KEY</code> y una <code>GEMINI_API_KEY</code>. Free tier de Groq cubre ~8h de uso al día.</p>
+      </div>
+      <div class="engine-card">
+        <div class="engine-key">06</div>
+        <h4>Design tokens</h4>
+        <p>Paleta OLED común. Los LEDs de color por producto vienen del mismo <code>shared/design_tokens.py</code>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATÁLOGOS DE PROMPTS -->
+<section id="catalogs">
+  <div class="container">
+    <div style="max-width: 720px;">
+      <div class="eyebrow">CATÁLOGOS DE PROMPTS · CROSS-PRODUCTO</div>
+      <h2>Habla como tu profesión, no como una IA genérica.</h2>
+      <p class="lead">Cada catálogo es un set de prompts ajustados a un dominio — con vocabulario propio, estructura y constraints. Un catálogo médico aplica igual al dictado de una nota, a la reunión de comité y al audio de la última consulta.</p>
+    </div>
+
+    <div class="catalogs-grid">
+      <div class="mode-card">
+        <div class="mode-key"><span class="num">CAT 01</span><span>incluido</span></div>
+        <div class="mode-body">
+          <h3>Dev / Código</h3>
+          <p>Bugs, refactors, prompts a Claude Code o Cursor, comentarios en PR.</p>
+        </div>
+      </div>
+      <div class="mode-card">
+        <div class="mode-key"><span class="num">CAT 02</span><span>incluido</span></div>
+        <div class="mode-body">
+          <h3>Médico / Clínico</h3>
+          <p>Notas de consulta, terminología profesional, redacción de historial.</p>
+        </div>
+      </div>
+      <div class="mode-card">
+        <div class="mode-key"><span class="num">CAT 03</span><span>incluido</span></div>
+        <div class="mode-body">
+          <h3>Legal / Contratos</h3>
+          <p>Redacción contractual, dictámenes, consulta con contexto legal.</p>
+        </div>
+      </div>
+      <div class="mode-card">
+        <div class="mode-key"><span class="num">CAT 04</span><span>incluido</span></div>
+        <div class="mode-body">
+          <h3>Marketing / Copy</h3>
+          <p>Briefs, headlines, copy para landing, prompts de generación visual.</p>
+        </div>
+      </div>
+      <div class="mode-card">
+        <div class="mode-key"><span class="num">CAT 05</span><span>incluido</span></div>
+        <div class="mode-body">
+          <h3>Investigación</h3>
+          <p>Síntesis de papers, notas académicas, prompts con citado.</p>
+        </div>
+      </div>
+      <div class="mode-card" style="border-color: var(--accent); background: var(--accent-soft);">
+        <div class="mode-key" style="background: var(--accent); color: var(--accent-fg);"><span class="num" style="color: var(--accent-fg);">CAT ★</span><span>tuyo</span></div>
+        <div class="mode-body">
+          <h3>Personalizado</h3>
+          <p>Define el tuyo. Vocabulario, estructura y constraints — vive en tu config local.</p>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top: 28px; font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-mute); text-transform: uppercase; letter-spacing: 0.12em;">[ TU CATÁLOGO PERSONALIZADO VIVE EN ~/.config/kimvo · VERSIONADO CONTIGO ]</p>
+  </div>
+</section>
+
+<!-- PRIVACY -->
+<section id="privacy">
+  <div class="container">
+    <div style="max-width: 720px;">
+      <div class="eyebrow">PRIVACIDAD · MATRIZ POR PRODUCTO</div>
+      <h2>A veces no quieres que tu audio salga del Mac.</h2>
+      <p class="lead">Un switch (<code>AUTO_WHISPER_PRIVACY_MODE=1</code>) apaga la ruta cloud en los productos que lo soportan hoy. Sin promesas vagas: la tabla dice qué cubre cada uno.</p>
+    </div>
+
+    <div class="privacy-matrix">
+      <table>
+        <thead>
+          <tr>
+            <th>PRODUCTO</th>
+            <th>TRANSCRIPCIÓN LOCAL</th>
+            <th>PROCESAMIENTO IA</th>
+            <th>SALIDA / TTS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="prod-row"><span style="color: var(--led-voice);">●</span> KIMVO VOICE</td>
+            <td class="ok">whisper.cpp local</td>
+            <td class="pending">v5.1 · hoy bloquea</td>
+            <td class="ok">macOS <code>say</code> offline</td>
+          </tr>
+          <tr>
+            <td class="prod-row"><span style="color: var(--led-meet);">●</span> KIMVO MEET</td>
+            <td class="ok">mlx-whisper local</td>
+            <td class="pending">v2 · 7B MLX local</td>
+            <td class="na">sin TTS</td>
+          </tr>
+          <tr>
+            <td class="prod-row"><span style="color: var(--led-drop);">●</span> KIMVO DROP</td>
+            <td class="pending">roadmap v5.1</td>
+            <td class="pending">roadmap v5.1</td>
+            <td class="na">sin TTS</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top: 32px; padding: 16px 20px; border-left: 2px solid var(--accent); background: var(--accent-soft); max-width: 780px;">
+      <div style="font-family: var(--font-mono); font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 6px;">NOTA HONESTA</div>
+      <p style="font-size: 0.92rem; color: var(--ink-dim); line-height: 1.55;">Voice puede correr 100% local en transcripción + TTS (requiere instalar whisper.cpp aparte — el build de la beta usa la ruta cloud por defecto). El procesamiento IA (optimize, resumir, explicar) llega local en v5.1. Meet tiene modo privado con mlx-whisper hoy; los insights locales con 7B MLX llegan en v2 tras validar el gate. Drop es cloud-only por ahora — roadmap v5.1.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- BETA -->
+<section id="pricing">
+  <div class="container-narrow center">
+    <div class="eyebrow">BETA · GRATIS</div>
+    <h2>Durante la beta, Kimvo Voice es gratis.</h2>
+    <p class="lead" style="max-width: 58ch; margin: 20px auto 0;">Traes tu propia API key de Groq (gratis — el free tier cubre ~8 h de dictado al día) y la app la guarda en tu Keychain. Los planes Pro llegarán más adelante con la versión cloud gestionada; a quienes prueban la beta les avisamos primero.</p>
+    <div class="cta-row mt-lg" style="justify-content: center;">
+      <a class="btn btn-primary" href="#download">DESCARGAR LA BETA →</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- DOWNLOAD -->
+<section id="download">
+  <div class="container-narrow center">
+    <div class="eyebrow">INSTALACIÓN · 4 PASOS · BETA GRATUITA</div>
+    <h2>Tres minutos hasta el dictado.</h2>
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 48px; text-align: left;">
+      <div class="panel">
+        <div class="panel-header"><span>PASO 01</span><span class="led-row"><span class="led on"></span></span></div>
+        <div class="panel-body"><h3 style="font-family: var(--font-display); font-weight: 700; font-size: 1rem;">Descarga</h3><p style="font-size: 0.84rem; margin-top: 8px;">.dmg → Aplicaciones. Primera vez: clic derecho → Abrir.</p></div>
+      </div>
+      <div class="panel">
+        <div class="panel-header"><span>PASO 02</span><span class="led-row"><span class="led on"></span></span></div>
+        <div class="panel-body"><h3 style="font-family: var(--font-display); font-weight: 700; font-size: 1rem;">Permisos</h3><p style="font-size: 0.84rem; margin-top: 8px;">Accesibilidad + Micrófono.</p></div>
+      </div>
+      <div class="panel">
+        <div class="panel-header"><span>PASO 03</span><span class="led-row"><span class="led on"></span></span></div>
+        <div class="panel-body"><h3 style="font-family: var(--font-display); font-weight: 700; font-size: 1rem;">Tu API key</h3><p style="font-size: 0.84rem; margin-top: 8px;">Groq free · ~8h al día.</p></div>
+      </div>
+      <div class="panel">
+        <div class="panel-header"><span>PASO 04</span><span class="led-row"><span class="led on" style="background: var(--led-voice);"></span><span class="led on" style="background: var(--led-meet);"></span><span class="led on" style="background: var(--led-drop);"></span></span></div>
+        <div class="panel-body"><h3 style="font-family: var(--font-display); font-weight: 700; font-size: 1rem;">Dicta</h3><p style="font-size: 0.84rem; margin-top: 8px;">⌘⌘ en cualquier app → habla → texto en el cursor.</p></div>
+      </div>
+    </div>
+    <div class="cta-row mt-lg" style="justify-content: center;">
+      <a class="btn btn-primary" href="https://github.com/tactician200/kimvo-voice/releases/latest">DESCARGAR KIMVO PARA MACOS →</a>
+      <a class="btn btn-secondary" href="https://github.com/tactician200/kimvo-voice">VER EN GITHUB</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Kimvo · beta · Hecho en El Crisol</div>
+    <div style="display: flex; gap: 24px;">
+      <a href="https://github.com/tactician200/kimvo-voice">GITHUB</a>
+      <a href="https://github.com/tactician200/kimvo-voice/issues">FEEDBACK</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
