@@ -9,13 +9,9 @@ Dictado por voz para Mac: doble-tap en la tecla <kbd>⌘ derecha</kbd>, habla, y
 
 ---
 
-## Web y descarga
-
-**[🌐 Landing](https://tactician200.github.io/kimvo-voice/)**
-
 ## Descargar
 
-**[⬇ Última versión (.dmg)](../../releases/latest)** · macOS · Apple Silicon (M1 o superior)
+**[⬇ Última versión (.dmg)](../../releases/latest)** · macOS · Apple Silicon (M1 o superior) · **[🌐 Landing](https://tactician200.github.io/kimvo-voice/)**
 
 > Beta privada gratuita. Necesitas una API key de Groq (gratis, se configura en el primer arranque).
 
